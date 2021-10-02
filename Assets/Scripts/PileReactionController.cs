@@ -12,6 +12,7 @@ public class PileReactionController : CMF.Controller
     private float stopFactor = 0.1f;
 
     private bool hasMoved = false;
+    private bool isLocked = false;
 
     private Vector3 velocity = Vector3.zero;
     private UnityEvent onFirstMove = new UnityEvent();
@@ -29,25 +30,45 @@ public class PileReactionController : CMF.Controller
 
     public Vector3 MoveCharacter(Vector3 pileNormal)
     {
-        velocity = new Vector3(pileNormal.x, 0f, pileNormal.z) * velocityFactor * velocityFactor / 100f;
-        ItemsPile.ForDebug(transform.position, velocity, Color.green);
-
-        if (!hasMoved)
+        if (isLocked)
         {
-            if (velocity != Vector3.zero)
-            {
-                hasMoved = true;
-                onFirstMove?.Invoke();
-            }
+            velocity = Vector3.zero;
         }
-        else if (Vector3.SqrMagnitude(velocity) < stopFactor)
+        else
         {
-            onStop?.Invoke();
+            velocity = new Vector3(pileNormal.x, 0f, pileNormal.z) * velocityFactor * velocityFactor / 100f;
+            ItemsPile.ForDebug(transform.position, velocity, Color.green);
+
+            if (!hasMoved)
+            {
+                if (velocity != Vector3.zero)
+                {
+                    hasMoved = true;
+                    onFirstMove?.Invoke();
+                }
+            }
+            else if (Vector3.SqrMagnitude(velocity) < stopFactor)
+            {
+                onStop?.Invoke();
+            }
         }
 
         mover.SetVelocity(GetVelocity());
         return GetVelocity();
     }
+
+    public void Lock()
+    {
+        isLocked = true;
+        windController.Lock();
+    }
+
+    public void Unlock()
+    {
+        isLocked = false;
+        windController.Unlock();
+    }
+
     public void ReachFinishLine()
     {
         onFinishLevel?.Invoke();
