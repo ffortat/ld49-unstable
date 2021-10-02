@@ -154,6 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterPrefab: {fileID: 1226626742089345526, guid: 65bf0e1d2f6275f419dcf0ab3badb4c3, type: 3}
+  levels:
+  - {fileID: 1787389862838781669, guid: 903369c438d0e3c4e83495ea9ef66ddf, type: 3}
 --- !u!114 &613664601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +176,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 613664599}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.17448561, y: 1.5774239, z: 0.7331656}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

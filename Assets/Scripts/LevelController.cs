@@ -5,6 +5,10 @@ public class LevelController : MonoBehaviour
 {
     [SerializeField]
     private PileReactionController characterPrefab = null;
+    [SerializeField]
+    private Level[] levels = new Level[0];
+
+    private int levelIndex = 0;
 
     private PileReactionController currentCharacter = null;
     private Timer timer = null;
@@ -16,14 +20,22 @@ public class LevelController : MonoBehaviour
 
     private void Start()
     {
-        LoadNextLevel();
+        LoadLevel(levelIndex);
     }
 
-    private void LoadNextLevel()
+    private void LoadLevel(int index)
     {
-        currentCharacter = Instantiate(characterPrefab);
-        currentCharacter.AddOnFirstMoveListener(StartLevel);
-        currentCharacter.AddOnStopListener(GameOver);
+        if (index >= 0 && index < levels.Length)
+        {
+            Level currentLevel = Instantiate(levels[index]);
+            
+            currentCharacter = Instantiate(characterPrefab);
+            currentCharacter.AddOnFirstMoveListener(StartLevel);
+            currentCharacter.AddOnStopListener(GameOver);
+            currentCharacter.AddOnFinishLevelListener(FinishLevel);
+
+            currentCharacter.transform.position = currentLevel.Start.transform.position;
+        }
     }
 
     private void StartLevel()
