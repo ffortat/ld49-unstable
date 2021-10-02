@@ -5,7 +5,9 @@ using UnityEngine;
 public class ItemsPile : MonoBehaviour
 {
     [SerializeField]
-    private float blowPercentageOnPile = 5f;
+    private float blowPercentageOnPile = 3f;
+    [SerializeField]
+    private float runPercentageOnPile = 0.1f;
 
     private Vector3 pileNormal = Vector3.up;
 
@@ -21,9 +23,12 @@ public class ItemsPile : MonoBehaviour
     private void FixedUpdate()
     {
         pileNormal = (pileNormal + windController.WindBlow * blowPercentageOnPile / 100f).normalized;
+        Vector3 velocity = characterController.MoveCharacter(pileNormal);
+        // TODO ajouter de la chute selon l'angle de la pile
+        pileNormal = (pileNormal - velocity * runPercentageOnPile / 100f).normalized;
         ForDebug(transform.position, pileNormal * 3, Color.red);
     }
-    public void ForDebug(Vector3 pos, Vector3 direction, Color color, float arrowHeadLength = 0.25f, float arrowHeadAngle = 20.0f)
+    public static void ForDebug(Vector3 pos, Vector3 direction, Color color, float arrowHeadLength = 0.25f, float arrowHeadAngle = 20.0f)
     {
         Debug.DrawRay(pos, direction, color);
 

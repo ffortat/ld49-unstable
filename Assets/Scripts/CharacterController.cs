@@ -5,7 +5,9 @@ using UnityEngine;
 public class CharacterController : CMF.Controller
 {
     [SerializeField]
-    private float velocityFactor = 5f;
+    private float velocityFactor = 75f;
+
+    private Vector3 velocity = Vector3.zero;
 
     private CMF.Mover mover = null;
     private WindController windController = null;
@@ -16,9 +18,12 @@ public class CharacterController : CMF.Controller
         windController = GetComponent<WindController>();
     }
 
-    private void FixedUpdate()
+    public Vector3 MoveCharacter(Vector3 pileNormal)
     {
+        velocity = new Vector3(pileNormal.x, 0f, pileNormal.z) * velocityFactor * velocityFactor / 100f;
+        ItemsPile.ForDebug(transform.position, velocity, Color.green);
         mover.SetVelocity(GetVelocity());
+        return GetVelocity();
     }
 
     public override Vector3 GetMovementVelocity()
@@ -28,7 +33,7 @@ public class CharacterController : CMF.Controller
 
     public override Vector3 GetVelocity()
     {
-        return velocityFactor * windController.WindBlow;
+        return velocity;
     }
 
     public override bool IsGrounded()

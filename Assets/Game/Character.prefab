@@ -327,6 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f48823b45b4a7a143869eaf3048b6a06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocityFactor: 75
 --- !u!114 &1411835570955411407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,6 +357,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f80a9e91b4df0e14fadcf87cc60fbfc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blowPercentageOnPile: 3
+  runPercentageOnPile: 0.1
 --- !u!1 &1940608235620550
 GameObject:
   m_ObjectHideFlags: 0
