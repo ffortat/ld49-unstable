@@ -1795,6 +1795,7 @@ GameObject:
   m_Component:
   - component: {fileID: 806050857}
   - component: {fileID: 806050858}
+  - component: {fileID: 806050859}
   m_Layer: 5
   m_Name: Times
   m_TagString: Untagged
@@ -1850,6 +1851,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &806050859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806050856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e183277a61ba1a74d90c5bead179a7e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bestTime: {fileID: 70669646}
+  personnalBestTime: {fileID: 837180997}
+  currentTime: {fileID: 2111380796}
+  timer: {fileID: 613664601}
 --- !u!1001 &810048656
 PrefabInstance:
   m_ObjectHideFlags: 0
