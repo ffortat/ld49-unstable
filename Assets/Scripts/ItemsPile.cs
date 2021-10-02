@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(WindController))]
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(PileReactionController))]
 public class ItemsPile : MonoBehaviour
 {
     [SerializeField]
@@ -11,12 +11,12 @@ public class ItemsPile : MonoBehaviour
 
     private Vector3 pileNormal = Vector3.up;
 
-    private CharacterController characterController = null;
+    private PileReactionController characterController = null;
     private WindController windController = null;
 
     private void Awake()
     {
-        characterController = GetComponent<CharacterController>();
+        characterController = GetComponent<PileReactionController>();
         windController = GetComponent<WindController>();
     }
 

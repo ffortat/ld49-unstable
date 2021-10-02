@@ -2,7 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(WindController))]
 [RequireComponent(typeof(CMF.Mover))]
-public class CharacterController : CMF.Controller
+public class PileReactionController : CMF.Controller
 {
     [SerializeField]
     private float velocityFactor = 75f;
