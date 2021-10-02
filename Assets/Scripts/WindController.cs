@@ -54,7 +54,7 @@ public class WindController : MonoBehaviour
         }
 
         Vector3 indicatorPosition = -windDirection * indicatorDistance;
-        indicatorPosition.y = windIndicator.transform.position.y;
+        indicatorPosition.y = windIndicator.transform.localPosition.y;
 
         windIndicator.transform.localPosition = indicatorPosition;
         windIndicator.transform.localScale = Vector3.one * windStrength;

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,6 +16,7 @@ public class PileReactionController : CMF.Controller
     private Vector3 velocity = Vector3.zero;
     private UnityEvent onFirstMove = new UnityEvent();
     private UnityEvent onStop = new UnityEvent();
+    private UnityEvent onFinishLevel = new UnityEvent();
 
     private CMF.Mover mover = null;
     private WindController windController = null;
@@ -46,6 +48,10 @@ public class PileReactionController : CMF.Controller
         mover.SetVelocity(GetVelocity());
         return GetVelocity();
     }
+    public void ReachFinishLine()
+    {
+        onFinishLevel?.Invoke();
+    }
 
     public void AddOnFirstMoveListener(UnityAction callback)
     {
@@ -55,6 +61,11 @@ public class PileReactionController : CMF.Controller
     public void AddOnStopListener(UnityAction callback)
     {
         onStop.AddListener(callback);
+    }
+
+    public void AddOnFinishLevelListener(UnityAction callback)
+    {
+        onFinishLevel.AddListener(callback);
     }
 
     public override Vector3 GetMovementVelocity()

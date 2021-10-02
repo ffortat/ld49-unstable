@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea00ad25c692c9d4881f3c19e75ca56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
+  controller: {fileID: 1226626742089345526}
   turnSpeed: 500
   ignoreControllerMomentum: 0
 --- !u!1 &1614085300445742
@@ -328,6 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocityFactor: 75
+  stopFactor: 0.1
 --- !u!114 &1411835570955411407
 MonoBehaviour:
   m_ObjectHideFlags: 0

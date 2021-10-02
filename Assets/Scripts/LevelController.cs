@@ -34,5 +34,12 @@ public class LevelController : MonoBehaviour
     private void GameOver()
     {
         timer.StopTimer();
+        // TODO trigger gameover
+    }
+
+    private void FinishLevel()
+    {
+        timer.StopTimer();
+        // TODO trigger win, save score, next level
     }
 }
