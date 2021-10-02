@@ -56,7 +56,7 @@ public class WindController : MonoBehaviour
         Vector3 indicatorPosition = -windDirection * indicatorDistance;
         indicatorPosition.y = windIndicator.transform.position.y;
 
-        windIndicator.transform.position = indicatorPosition;
+        windIndicator.transform.localPosition = indicatorPosition;
         windIndicator.transform.localScale = Vector3.one * windStrength;
         windIndicator.transform.LookAt(new Vector3(transform.position.x, windIndicator.transform.position.y, transform.position.z));
 
@@ -73,6 +73,7 @@ public class WindController : MonoBehaviour
     }
 
     public bool IsBlowing { get => isBlowing; }
-    public float WindStrength { get => windStrength; }
+    public float WindStrength { get => isBlowing ? windStrength : 0f; }
     public Vector3 WindDirection { get => windDirection; }
+    public Vector3 WindBlow { get => windDirection * WindStrength; }
 }
