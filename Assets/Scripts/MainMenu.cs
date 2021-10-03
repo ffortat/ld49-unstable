@@ -35,6 +35,8 @@ public class MainMenu : MonoBehaviour
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_WEBPLAYER
+        Application.OpenURL("https://ldjam.com/events/ludum-dare/49/$268241");
 #else
         Application.Quit();
 #endif
