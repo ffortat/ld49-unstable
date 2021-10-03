@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    private int levelIndex = 0;
     private UnityEvent onOpenCredits = new UnityEvent();
+
+    public static SceneLoader instance = null;
 
     private void Awake()
     {
@@ -15,6 +18,7 @@ public class SceneLoader : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+        instance = this;
     }
 
     public void AddOnOpenCreditsListener(UnityAction callback)
@@ -27,8 +31,9 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void LoadLevel()
+    public void LoadLevel(int index = 0)
     {
+        levelIndex = index;
         SceneManager.LoadScene("Level");
     }
 
@@ -67,4 +72,6 @@ public class SceneLoader : MonoBehaviour
     {
         onOpenCredits?.Invoke();
     }
+
+    public int LevelIndex { get => levelIndex; }
 }

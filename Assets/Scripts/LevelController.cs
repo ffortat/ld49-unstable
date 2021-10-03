@@ -34,6 +34,13 @@ public class LevelController : MonoBehaviour
 
     private void Start()
     {
+        levelIndex = sceneLoader.LevelIndex;
+
+        if (levelIndex < 0 || levelIndex >= levels.Length)
+        {
+            levelIndex = 0;
+        }
+
         LoadLevel(levelIndex);
     }
 

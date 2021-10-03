@@ -5,6 +5,8 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField]
     private GameObject creditsPanel = null;
+    [SerializeField]
+    private GameObject selectLevelPanel = null;
 
     private SceneLoader sceneLoader = null;
 
@@ -47,6 +49,21 @@ public class MainMenu : MonoBehaviour
     public void Play()
     {
         sceneLoader.LoadLevel();
+    }
+
+    public void SelectLevel()
+    {
+        selectLevelPanel.SetActive(true);
+    }
+
+    public void CloseLevelSelection()
+    {
+        selectLevelPanel.SetActive(false);
+    }
+
+    public void StartLevel(int index)
+    {
+        sceneLoader.LoadLevel(index);
     }
 
     public void Leaderboard()
