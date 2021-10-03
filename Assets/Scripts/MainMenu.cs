@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MainMenu : MonoBehaviour
@@ -12,6 +13,20 @@ public class MainMenu : MonoBehaviour
         sceneLoader = FindObjectOfType<SceneLoader>();
 
         Debug.Assert(sceneLoader, "Missing SceneLoader in the scene from " + name);
+        Debug.Assert(creditsPanel, "Missing CreditsPanel on " + name);
+    }
+
+    private void Start()
+    {
+        StartCoroutine(DelayAddListener());
+    }
+
+    private IEnumerator DelayAddListener()
+    {
+        yield return null;
+
+        sceneLoader = FindObjectOfType<SceneLoader>();
+        sceneLoader.AddOnOpenCreditsListener(OpenCredits);
     }
 
     private void Update()
@@ -46,7 +61,12 @@ public class MainMenu : MonoBehaviour
 
     public void Credits()
     {
-        sceneLoader.LoadCredits(creditsPanel);
+        sceneLoader.LoadCredits();
+    }
+
+    public void OpenCredits()
+    {
+        creditsPanel.SetActive(true);
     }
 
     public void CloseCredits()

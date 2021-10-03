@@ -94,7 +94,7 @@ public class LevelController : MonoBehaviour
 
     public void QuitLevel()
     {
-        sceneLoader.LoadMainMenu();
+        sceneLoader.LoadCredits();
     }
 
     private void LoadLevel(int index)
