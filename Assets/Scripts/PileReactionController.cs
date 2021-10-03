@@ -53,7 +53,9 @@ public class PileReactionController : CMF.Controller
         else
         {
             velocity = new Vector3(pileNormal.x, 0f, pileNormal.z) * velocityFactor * velocityFactor / 100f;
+#if UNITY_EDITOR
             ItemsPile.ForDebug(transform.position, velocity, Color.green);
+#endif
 
             if (!hasMoved)
             {
