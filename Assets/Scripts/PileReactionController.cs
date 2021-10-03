@@ -28,6 +28,16 @@ public class PileReactionController : CMF.Controller
         windController = GetComponent<WindController>();
     }
 
+    private void FixedUpdate()
+    {
+        mover.CheckForGround();
+
+        if (!mover.IsGrounded())
+        {
+            Stop();
+        }
+    }
+
     public Vector3 MoveCharacter(Vector3 pileNormal)
     {
         if (isLocked)
@@ -49,7 +59,7 @@ public class PileReactionController : CMF.Controller
             }
             else if (Vector3.SqrMagnitude(velocity) < stopFactor)
             {
-                onStop?.Invoke();
+                Stop();
             }
         }
 
@@ -101,6 +111,11 @@ public class PileReactionController : CMF.Controller
 
     public override bool IsGrounded()
     {
-        return true;
+        return mover.IsGrounded();
+    }
+
+    private void Stop()
+    {
+        onStop?.Invoke();
     }
 }
