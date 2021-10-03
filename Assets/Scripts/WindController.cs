@@ -11,7 +11,7 @@ public class WindController : MonoBehaviour
     private ParticleSystem windBlowEffect = null;
 
     [SerializeField]
-    private float indicatorDistance = 3f;
+    private float indicatorDistance = 2f;
 
     [SerializeField]
     private string blowButtonName = "Blow";
@@ -58,9 +58,10 @@ public class WindController : MonoBehaviour
 
             Vector3 indicatorPosition = -windDirection * indicatorDistance;
             indicatorPosition.y = windIndicator.transform.localPosition.y;
+            float strengthScale = 0.5f * windStrength;
 
             windIndicator.transform.localPosition = indicatorPosition;
-            windIndicator.transform.localScale = Vector3.one * windStrength;
+            windIndicator.transform.localScale = new Vector3(2, strengthScale, strengthScale);
             windIndicator.transform.LookAt(new Vector3(transform.position.x, windIndicator.transform.position.y, transform.position.z));
 
             if (Input.GetButtonDown(blowButtonName))
