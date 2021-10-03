@@ -35,18 +35,19 @@ public class ItemsPile : MonoBehaviour
     {
         pileNormal = (pileNormal + windController.WindBlow * blowPercentageOnPile / 100f).normalized;
         Vector3 velocity = pileReactionController.MoveCharacter(pileNormal);
-            
+
         if (!pileReactionController.IsLocked)
         {
             float pileAngle = Vector3.Angle(Vector3.up, pileNormal);
             float fallFactor = Mathf.Pow(pileAngle, pileFallExponential) / Mathf.Pow(pileFallDividingFactor, pileFallExponential);
-            //Debug.Log("Angle " + Vector3.Angle(Vector3.up, pileNormal));
             pileNormal = (pileNormal + new Vector3(pileNormal.x, 0, pileNormal.z) * fallFactor).normalized;
         }
-            
+
         pileNormal = (pileNormal - velocity * runPercentageOnPile / 100f).normalized;
-            
+
+#if UNITY_EDITOR
         ForDebug(transform.position, pileNormal * 3, Color.red);
+#endif
         pileGameObject.transform.rotation = Quaternion.FromToRotation(Vector3.up, pileNormal);
 
         if (Vector3.Angle(Vector3.up, pileNormal) > dropAngle)
@@ -54,6 +55,8 @@ public class ItemsPile : MonoBehaviour
             pileReactionController.DropPile();
         }
     }
+
+#if UNITY_EDITOR
     public static void ForDebug(Vector3 pos, Vector3 direction, Color color, float arrowHeadLength = 0.25f, float arrowHeadAngle = 20.0f)
     {
         Debug.DrawRay(pos, direction, color);
@@ -63,4 +66,5 @@ public class ItemsPile : MonoBehaviour
         Debug.DrawRay(pos + direction, right * arrowHeadLength, color);
         Debug.DrawRay(pos + direction, left * arrowHeadLength, color);
     }
+#endif
 }

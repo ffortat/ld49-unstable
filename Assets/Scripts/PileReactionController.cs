@@ -11,8 +11,14 @@ public class PileReactionController : CMF.Controller
     [SerializeField]
     private float stopFactor = 0.1f;
 
+    [SerializeField]
+    private AudioSource walkSound = null;
+
     private bool hasMoved = false;
     private bool isLocked = false;
+
+    private float sinceLastSound = 0f;
+    private float nextSound = 0f;
 
     private Vector3 velocity = Vector3.zero;
     private UnityEvent onFirstMove = new UnityEvent();
@@ -64,6 +70,7 @@ public class PileReactionController : CMF.Controller
         }
 
         mover.SetVelocity(GetVelocity());
+        PlayWalkSound();
         return GetVelocity();
     }
 
@@ -118,6 +125,21 @@ public class PileReactionController : CMF.Controller
     public override bool IsGrounded()
     {
         return mover.IsGrounded();
+    }
+
+    private void PlayWalkSound()
+    {
+        if (walkSound)
+        {
+            nextSound = velocity.magnitude == 0 ? float.MaxValue : 0.5f / velocity.magnitude;
+            sinceLastSound += Time.deltaTime;
+
+            if (sinceLastSound >= nextSound)
+            {
+                walkSound.Play();
+                sinceLastSound = 0f;
+            }
+        }
     }
 
     private void Stop()

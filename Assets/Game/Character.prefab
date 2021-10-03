@@ -329,6 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityFactor: 75
   stopFactor: 0.1
+  walkSound: {fileID: 0}
 --- !u!114 &1411835570955411407
 MonoBehaviour:
   m_ObjectHideFlags: 0

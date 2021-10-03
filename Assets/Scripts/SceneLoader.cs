@@ -67,9 +67,4 @@ public class SceneLoader : MonoBehaviour
     {
         onOpenCredits?.Invoke();
     }
-
-    private void OnDestroy()
-    {
-        Debug.Log("Destroyed");
-    }
 }
