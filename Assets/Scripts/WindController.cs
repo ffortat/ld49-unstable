@@ -99,5 +99,5 @@ public class WindController : MonoBehaviour
     public bool IsBlowing { get => isBlowing; }
     public float WindStrength { get => isBlowing ? windStrength : 0f; }
     public Vector3 WindDirection { get => windDirection; }
-    public Vector3 WindBlow { get => windDirection * Mathf.Pow(WindStrength, 3); }
+    public Vector3 WindBlow { get => windDirection * Mathf.Pow(WindStrength, 2); }
 }

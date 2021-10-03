@@ -9,6 +9,11 @@ public class ItemsPile : MonoBehaviour
     [SerializeField]
     private float runPercentageOnPile = 0.1f;
 
+    [SerializeField]
+    private float pileFallExponential = 1f;
+    [SerializeField]
+    private float pileFallDividingFactor = 360f;
+
     private Vector3 pileNormal = Vector3.up;
 
     private PileReactionController characterController = null;
@@ -24,7 +29,10 @@ public class ItemsPile : MonoBehaviour
     {
         pileNormal = (pileNormal + windController.WindBlow * blowPercentageOnPile / 100f).normalized;
         Vector3 velocity = characterController.MoveCharacter(pileNormal);
-        // TODO ajouter de la chute selon l'angle de la pile
+        float pileAngle = Vector3.Angle(Vector3.up, pileNormal);
+        float fallFactor = Mathf.Pow(pileAngle, pileFallExponential) / Mathf.Pow(pileFallDividingFactor, pileFallExponential);
+        Debug.Log("Angle " + Vector3.Angle(Vector3.up, pileNormal));
+        pileNormal = (pileNormal + new Vector3(pileNormal.x, 0, pileNormal.z) * fallFactor).normalized;
         pileNormal = (pileNormal - velocity * runPercentageOnPile / 100f).normalized;
         ForDebug(transform.position, pileNormal * 3, Color.red);
     }
