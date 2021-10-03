@@ -79,6 +79,12 @@ public class PileReactionController : CMF.Controller
         windController.Unlock();
     }
 
+    public void DropPile()
+    {
+        Stop();
+        // todo animation ? some delay before stop
+    }
+
     public void ReachFinishLine()
     {
         onFinishLevel?.Invoke();
