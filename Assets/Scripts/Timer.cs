@@ -15,7 +15,7 @@ public class Timer : MonoBehaviour
 
     public void StartTimer()
     {
-        time = 0f;
+        ResetTimer();
         Resume();
     }
 
@@ -32,6 +32,11 @@ public class Timer : MonoBehaviour
     public void StopTimer()
     {
         Pause();
+    }
+
+    public void ResetTimer()
+    {
+        time = 0f;
     }
 
     public bool IsRunning { get => isRunning; }

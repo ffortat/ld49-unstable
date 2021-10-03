@@ -11,6 +11,8 @@ public class TimerDisplay : MonoBehaviour
     private TextMeshProUGUI personnalBestTime = null;
     [SerializeField]
     private TextMeshProUGUI currentTime = null;
+    [SerializeField]
+    private TextMeshProUGUI finalTime = null;
 
     [SerializeField]
     private Timer timer = null;
@@ -20,10 +22,14 @@ public class TimerDisplay : MonoBehaviour
         Debug.Assert(bestTime, "Missing BestTime on " + name);
         Debug.Assert(personnalBestTime, "Missing PersonnalBestTime on " + name);
         Debug.Assert(currentTime, "Missing CurrentTime on " + name);
+        Debug.Assert(finalTime, "Missing CurrentTime on " + name);
     }
 
     private void Update()
     {
-        currentTime.text = timer.DisplayTime;
+        string timeDisplayed = timer.DisplayTime;
+
+        currentTime.text = timeDisplayed;
+        finalTime.text = timeDisplayed;
     }
 }

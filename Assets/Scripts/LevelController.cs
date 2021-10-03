@@ -12,6 +12,8 @@ public class LevelController : MonoBehaviour
     private RectTransform pauseMenu = null;
     [SerializeField]
     private RectTransform gameOver = null;
+    [SerializeField]
+    private RectTransform saveScore = null;
 
     private bool isPaused = false;
     private int levelIndex = 0;
@@ -74,6 +76,22 @@ public class LevelController : MonoBehaviour
         UnlockLevel();
     }
 
+    public void NextLevel()
+    {
+        levelIndex += 1;
+
+        if (levelIndex < levels.Length)
+        {
+            DestroyLevel();
+            LoadLevel(levelIndex);
+            saveScore.gameObject.SetActive(false);
+        }
+        else
+        {
+            QuitLevel();
+        }
+    }
+
     public void QuitLevel()
     {
         sceneLoader.LoadMainMenu();
@@ -91,6 +109,8 @@ public class LevelController : MonoBehaviour
             currentCharacter.AddOnFinishLevelListener(FinishLevel);
 
             currentCharacter.transform.position = currentLevel.Start.transform.position;
+
+            timer.ResetTimer();
         }
     }
 
@@ -137,7 +157,7 @@ public class LevelController : MonoBehaviour
     private void FinishLevel()
     {
         timer.StopTimer();
-        sceneLoader.LoadMainMenu();
-        // TODO trigger win, save score, next level
+        LockLevel();
+        saveScore.gameObject.SetActive(true);
     }
 }
