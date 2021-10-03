@@ -17,6 +17,9 @@ public class ItemsPile : MonoBehaviour
     [SerializeField]
     private float dropAngle = 45f;
 
+    [SerializeField]
+    private GameObject pileGameObject = null;
+
     private Vector3 pileNormal = Vector3.up;
 
     private PileReactionController pileReactionController = null;
@@ -32,12 +35,19 @@ public class ItemsPile : MonoBehaviour
     {
         pileNormal = (pileNormal + windController.WindBlow * blowPercentageOnPile / 100f).normalized;
         Vector3 velocity = pileReactionController.MoveCharacter(pileNormal);
-        float pileAngle = Vector3.Angle(Vector3.up, pileNormal);
-        float fallFactor = Mathf.Pow(pileAngle, pileFallExponential) / Mathf.Pow(pileFallDividingFactor, pileFallExponential);
-        //Debug.Log("Angle " + Vector3.Angle(Vector3.up, pileNormal));
-        pileNormal = (pileNormal + new Vector3(pileNormal.x, 0, pileNormal.z) * fallFactor).normalized;
+            
+        if (!pileReactionController.IsLocked)
+        {
+            float pileAngle = Vector3.Angle(Vector3.up, pileNormal);
+            float fallFactor = Mathf.Pow(pileAngle, pileFallExponential) / Mathf.Pow(pileFallDividingFactor, pileFallExponential);
+            //Debug.Log("Angle " + Vector3.Angle(Vector3.up, pileNormal));
+            pileNormal = (pileNormal + new Vector3(pileNormal.x, 0, pileNormal.z) * fallFactor).normalized;
+        }
+            
         pileNormal = (pileNormal - velocity * runPercentageOnPile / 100f).normalized;
+            
         ForDebug(transform.position, pileNormal * 3, Color.red);
+        pileGameObject.transform.rotation = Quaternion.FromToRotation(Vector3.up, pileNormal);
 
         if (Vector3.Angle(Vector3.up, pileNormal) > dropAngle)
         {

@@ -124,4 +124,6 @@ public class PileReactionController : CMF.Controller
     {
         onStop?.Invoke();
     }
+
+    public bool IsLocked { get => isLocked; }
 }
