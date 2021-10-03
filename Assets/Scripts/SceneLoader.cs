@@ -28,9 +28,17 @@ public class SceneLoader : MonoBehaviour
 
     }
 
-    public void LoadCredits()
+    public void LoadCredits(GameObject creditsPanel)
     {
+        if (SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
 
+        if (creditsPanel)
+        {
+            creditsPanel.SetActive(true);
+        }
     }
 
     public void LoadOptions()
