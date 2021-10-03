@@ -1161,8 +1161,10 @@ MonoBehaviour:
   characterPrefab: {fileID: 1226626742089345526, guid: 65bf0e1d2f6275f419dcf0ab3badb4c3, type: 3}
   levels:
   - {fileID: 1787389862838781669, guid: 903369c438d0e3c4e83495ea9ef66ddf, type: 3}
-  - {fileID: 1787389862838781669, guid: 903369c438d0e3c4e83495ea9ef66ddf, type: 3}
-  - {fileID: 1787389862838781669, guid: 903369c438d0e3c4e83495ea9ef66ddf, type: 3}
+  - {fileID: 1787389862838781669, guid: d6b482d3545ffb1458f352434fa58207, type: 3}
+  - {fileID: 1787389862838781669, guid: 1c808794da9807849a1cb0c26ecc9c7f, type: 3}
+  - {fileID: 1787389862838781669, guid: 3b47619931819594aa6a69804150f397, type: 3}
+  - {fileID: 1787389862838781669, guid: 2e88d7ab9875a02448a01c59464d0be2, type: 3}
   pauseMenu: {fileID: 1160410167}
   gameOver: {fileID: 1571239422}
   saveScore: {fileID: 1465348093}
